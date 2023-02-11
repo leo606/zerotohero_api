@@ -1,14 +1,26 @@
-import express from 'express'
- 
+import Fastify from 'fastify'
+import cors from '@fastify/cors'
 
-const app = express() 
+const app = Fastify({ logger: true })
 
-app.get('/', function (req: express.Request, res: express.Response) {
-  res.send('asdasdasdasd')
+const PORT = 5000
+
+app.register(cors)
+
+app.get('/', async () => {
+  return {
+    test: 'this is a test',
+  }
 })
 
-const port = 5000
-app.listen(port, () => {
-  console.log(`server running @ http://localhost:${port}`)
+async function server() {
+  try {
+    await app.listen({ port: PORT })
+    app.log.info(`server running on port ${PORT}`)
+  } catch (error) {
+    app.log.error(error)
+    process.exit(1)
+  }
+}
 
-})
+server()
