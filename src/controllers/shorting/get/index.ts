@@ -1,7 +1,13 @@
-import {FastifyRequest, FastifyReply} from 'fastify'
+import { FastifyRequest, FastifyReply, RouteOptions } from 'fastify'
 
-function shortGet(_req: FastifyRequest, res: FastifyReply) {
+async function handler(_req: FastifyRequest, res: FastifyReply) {
   return res.status(501).send()
 }
 
-export { shortGet }
+const getRoute: RouteOptions = {
+  method: 'GET',
+  url: '/',
+  handler
+}
+
+export { getRoute }

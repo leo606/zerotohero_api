@@ -1,7 +1,7 @@
-import Fastify from 'fastify'
-import { rootRouter } from '../controllers/router'
+import Fastify, { FastifyInstance } from 'fastify'
+import { rootRouter } from '../controllers/rootRouter'
 
-const app = Fastify({ logger: true })
+const app: FastifyInstance = Fastify({ logger: true })
 
 app.register(rootRouter, { prefix: '/' })
 
