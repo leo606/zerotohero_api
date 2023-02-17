@@ -1,20 +1,18 @@
-import { FastifyRequest, FastifyReply, RouteOptions } from 'fastify'
+import { FastifyReply, RouteOptions } from 'fastify'
 import { createShortUrl } from '../../../services/shorting/create'
-import { joiSchema } from './schema'
+import { postUrlRequest, joiSchema } from './schema'
 
-async function handler(req: FastifyRequest, res: FastifyReply) {
-  await createShortUrl('anyy')
+async function handler(req: postUrlRequest, res: FastifyReply) {
+  console.log(req.body)
+  await createShortUrl('asd')
+  return res.status(418).send()
 }
 
 const postRoute: RouteOptions = {
   method: 'POST',
   url: '/',
-  schema: {
-    body: joiSchema,
-  },
-  validatorCompiler: ({ schema }: { schema: any }) => {
-    return (data) => schema.validate(data)
-  },
+  schema: { body: joiSchema },
+  validatorCompiler: ({ schema }: { schema: any }) => (data) => schema.validate(data),
   handler,
 }
 
