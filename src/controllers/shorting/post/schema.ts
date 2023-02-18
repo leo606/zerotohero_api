@@ -1,16 +1,31 @@
-import { FastifyRequest } from 'fastify'
+import {
+  FastifyRequest,
+  RawReplyDefaultExpression,
+  RawRequestDefaultExpression,
+  RawServerDefault,
+  RouteOptions,
+} from 'fastify'
 import Joi from 'joi'
 
-export interface IBasePostUrlSchema {
+export interface postUrlDTO {
   url: string;
 }
 
-export interface postUrlRequest extends FastifyRequest {
-  body: IBasePostUrlSchema;
+export interface postUrlResponse {
+  message: string;
 }
 
-export const joiSchema = Joi.object<IBasePostUrlSchema>()
+export type postUrlRequest = FastifyRequest<{ Body: postUrlDTO, Reply: postUrlResponse }>
+
+export type postUrlRouteOptions = RouteOptions<
+  RawServerDefault,
+  RawRequestDefaultExpression,
+  RawReplyDefaultExpression,
+  { Body: postUrlDTO; Reply: postUrlResponse }
+>;
+
+export const joiSchema = Joi.object<postUrlDTO>()
   .keys({
-    url: Joi.string().required(),
+    url: Joi.string().uri().required(),
   })
   .required()
