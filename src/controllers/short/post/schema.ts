@@ -7,24 +7,24 @@ import {
 } from 'fastify'
 import Joi from 'joi'
 
-export interface postUrlDTO {
+export interface postShortDTO {
   url: string;
 }
 
-export interface postUrlResponse {
+export interface postShortResponse {
   message: string;
 }
 
-export type postUrlRequest = FastifyRequest<{ Body: postUrlDTO, Reply: postUrlResponse }>
+export type postShortRequest = FastifyRequest<{ Body: postShortDTO, Reply: postShortResponse }>
 
-export type postUrlRouteOptions = RouteOptions<
+export type postShortRouteOptions = RouteOptions<
   RawServerDefault,
   RawRequestDefaultExpression,
   RawReplyDefaultExpression,
-  { Body: postUrlDTO; Reply: postUrlResponse }
+  { Body: postShortDTO; Reply: postShortResponse }
 >;
 
-export const joiSchema = Joi.object<postUrlDTO>()
+export const joiSchema = Joi.object<postShortDTO>()
   .keys({
     url: Joi.string().uri().required(),
   })

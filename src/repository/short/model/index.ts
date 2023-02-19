@@ -1,8 +1,8 @@
 import { model } from 'mongoose'
 import { shortingSchema } from './schema'
-import { IShorting } from './shorting.interface'
+import { IShort } from './shorting.interface'
 
-export const ShortingModel = model<IShorting>(
+export const ShortingModel = model<IShort>(
   'shorting',
   shortingSchema,
   'shorting'

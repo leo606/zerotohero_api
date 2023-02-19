@@ -1,11 +1,11 @@
 import { FastifyInstance } from 'fastify'
 import { IPluginOptionsBase } from '../../../app/server.interface'
-import { getRoute } from '../get'
-import { postRoute } from '../post'
+import { getShortRoute } from '../get'
+import { postShortRoute } from '../post'
 
 async function shortRouter(app: FastifyInstance, _opts: IPluginOptionsBase, done: () => void) {
-  app.route(getRoute)
-  app.route(postRoute)
+  app.route(getShortRoute)
+  app.route(postShortRoute)
 
   done()
 }
