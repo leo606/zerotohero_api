@@ -1,4 +1,6 @@
 import { ShortingModel } from '../../../repository/short/model'
+import { ShortNotFount } from '../errors/ShortNotFount'
+
 const TEN_MINUTES = 600_000
 
 export async function getBaseUrl(short: string): Promise<string> {
@@ -16,7 +18,7 @@ export async function getBaseUrl(short: string): Promise<string> {
 
   if (!shortDocument) {
     void ShortingModel.updateOne({ short }, { $set: { isActive: false } })
-    throw new Error('short not found')
+    throw new ShortNotFount()
   }
 
   return shortDocument.baseUrl

@@ -1,18 +1,13 @@
 import { FastifyReply } from 'fastify'
 import { getBaseUrl } from '../../../services/short/get'
-import StatusCode from '../../utils/statusCodesEnum'
+import StatusCode from '../../../shared/statusCodesEnum'
 import { getShortRequest, getShortRouteOptions } from './schema'
 
 async function handler(req: getShortRequest, res: FastifyReply) {
-  try {
-    const { short } = req.params
-    const baseUrl = await getBaseUrl(short)
+  const { short } = req.params
+  const baseUrl = await getBaseUrl(short)
 
-    return res.redirect(StatusCode.RedirectSeeOther, baseUrl)
-  } catch (error) {
-    console.log('deu ruim')
-    console.log(error)
-  }
+  return res.redirect(StatusCode.RedirectSeeOther, baseUrl)
 }
 
 const getShortRoute: getShortRouteOptions = {
