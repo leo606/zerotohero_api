@@ -28,7 +28,7 @@ const postUserRoute: postUserRouteOptions = {
   validatorCompiler:
     ({ schema }: any) =>
       (data) =>
-        schema.validate(data),
+        schema.validate(data, { abortEarly: false }),
   handler,
 }
 

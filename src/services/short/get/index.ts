@@ -17,7 +17,7 @@ export async function getBaseUrl(short: string): Promise<string> {
   ).select('baseUrl')
 
   if (!shortDocument) {
-    void ShortingModel.updateOne({ short }, { $set: { isActive: false } })
+    await ShortingModel.updateOne({ short }, { $set: { isActive: false } })
     throw new ShortNotFount()
   }
 

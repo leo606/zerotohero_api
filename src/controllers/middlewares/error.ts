@@ -1,6 +1,7 @@
 import { FastifyError, FastifyReply, FastifyRequest } from 'fastify'
 import { HttpError } from '../../services/shared/errors/httpError'
 import StatusCode from '../../shared/statusCodesEnum'
+import Joi from 'joi'
 
 export function errorHandler(
   error: FastifyError,
@@ -11,6 +12,12 @@ export function errorHandler(
 
   if (error instanceof HttpError) {
     return res.status(error.code).send({ message: error.message })
+  }
+
+  if (error instanceof Joi.ValidationError) {
+    return res
+      .status(error?.statusCode || 400)
+      .send({ message: error.message })
   }
 
   return res
