@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs'
 import { UsersModel } from '../../../repository/user/model'
+import { AccessLevel } from '../../../shared/accessLevelsEnum'
 import { UserAlreadyRegistered } from '../errors/UserAlreadyRegistered'
 
 export async function createUser(
@@ -7,6 +8,7 @@ export async function createUser(
   email: string,
   password: string
 ) {
+  console.log('creaaaaaaaaaaaaaaaaaat')
   const existsUserRegistered = await UsersModel.exists({
     $or: [{ username }, { email }],
   })
@@ -21,6 +23,7 @@ export async function createUser(
     username,
     email,
     password: passwordHash,
+    accessLevel: AccessLevel.User
   }).save()
 
   return userDocument

@@ -1,6 +1,8 @@
 import { FastifyReply } from 'fastify'
 import { createUser } from '../../../services/user/create'
+import { AccessLevel } from '../../../shared/accessLevelsEnum'
 import StatusCode from '../../../shared/statusCodesEnum'
+import { access } from '../../middlewares/access'
 import {
   joiSchema,
   postUserRequest,
@@ -12,6 +14,7 @@ async function handler(
   req: postUserRequest,
   res: FastifyReply
 ): Promise<postUserResponse> {
+  console.log(123123123123)
   const { username, email, password } = req.body
 
   await createUser(username, email, password)
@@ -30,6 +33,7 @@ const postUserRoute: postUserRouteOptions = {
       (data) =>
         schema.validate(data, { abortEarly: false }),
   handler,
+  preHandler: access(AccessLevel.Admin)
 }
 
 export { postUserRoute }

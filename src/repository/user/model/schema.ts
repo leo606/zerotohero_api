@@ -20,6 +20,10 @@ export const userSchema = new Schema<IUser>(
     isActive: {
       type: Boolean,
       default: true,
+    },
+    accessLevel: {
+      type: Number,
+      required: true
     }
   },
   {

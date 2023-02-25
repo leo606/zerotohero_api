@@ -7,6 +7,7 @@ export interface IUser {
   createdAt: Date
   updatedAt: Date
   isActive: boolean
+  accessLevel: number
 }
 
 export type UserDocument = Document<IUser>
