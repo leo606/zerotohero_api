@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs'
-import { UsersModel } from '../../../repository/user/model'
+import { UsersModel } from '../../../model/user/model'
 import { InvalidPassword } from '../../shared/errors/access/InvalidPassword'
 import { UserNotFound } from '../../shared/errors/users/UserNotFound'
 import { genAccessToken } from '../helpers/genAccessToken'

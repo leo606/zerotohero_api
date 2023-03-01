@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { UsersModel } from '../../../repository/user/model'
+import { UsersModel } from '../../../model/user/model'
 import { AccessLevel } from '../../../shared/accessLevelsEnum'
 
 declare module 'jsonwebtoken' {

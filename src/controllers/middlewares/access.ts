@@ -1,10 +1,10 @@
-import { FastifyRequest } from 'fastify'
+import { FastifyRequest, preHandlerHookHandler } from 'fastify'
 import { validate } from '../../services/access/validate/validate'
 import { AccessLevel } from '../../shared/accessLevelsEnum'
 import { AccessDenied } from './errors/AccessDenied'
 import { AuthorizationHeaderNotFound } from './errors/AuthorizationHeaderNotFound'
 
-export function access(level: AccessLevel) {
+export function access(level: AccessLevel): preHandlerHookHandler {
   return async (req: FastifyRequest) => {
     const { authorization: token } = req.headers
 

@@ -1,4 +1,4 @@
-import { ShortingModel } from '../../../repository/short/model'
+import { ShortingModel } from '../../../model/short/model'
 
 export async function createShortUrl(url: string): Promise<string> {
   const shortDocument = await ShortingModel.findOneAndUpdate(
