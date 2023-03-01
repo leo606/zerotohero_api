@@ -4,7 +4,7 @@ import { IShort } from '../../../model/short/model/shorting.interface'
 export async function listShortsInfos(): Promise<IShort[]> {
   const shortsDocuments = await ShortingModel.find(
     {},
-    { _id: 0, baseUrl: 1 },
+    { _id: 0, baseUrl: 1, usageCounter: 1, short: 1 },
     { sort: { usageCounter: -1 } }
   )
 
